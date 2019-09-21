@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default class App extends React.Component{
   constructor(props){
@@ -21,13 +22,19 @@ export default class App extends React.Component{
     return(
       <View style={styles.container}>
         <Text style={styles.container_header}>PH Sensor</Text>
-        <View style={styles.columns, styles.data}><Text>123</Text></View>
-        <View style={styles.columns}>
-          <Text style={styles.warning}>{this.state.warning_text}</Text>
+        <LinearGradient
+            colors={['#062475', '#2cbdf2', '#6e50b5']}
+            style={{paddingLeft: 100, paddingRight: 100, height: "100%", width: "100%", flex: 9}}
+        >
+
+          <View style={styles.columns, styles.data}><Text>123</Text></View>
+          <View style={styles.columns}>
+            <Text style={styles.warning}>{this.state.warning_text}</Text>
+          </View>
+          <View style={styles.buttons} onTouchStart={this.check_for_sensor}><Text style={styles.button_text}>Get PH Reading</Text></View>
+          <View style={styles.columns}></View>
+        </LinearGradient>
         </View>
-        <View style={styles.buttons} onTouchStart={this.check_for_sensor}><Text style={styles.button_text}>Get PH Reading</Text></View>
-        <View style={styles.columns}></View>
-      </View>
     )
   };
 }
@@ -35,19 +42,20 @@ export default class App extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#63d6e0',
+    // backgroundColor: '#63d6e0',
     alignItems: 'center',
     justifyContent: 'center',
   },
     container_header: {
-      color: "#000",
+      flex: 1,
+      flexDirection: "column",
+      color: "#FFF",
+      width: "100%",
       textAlign: "center",
       fontSize: 50,
-      paddingTop: "5%",
-      marginTop: "5%",
-      marginBottom: "25%",
       alignSelf: "stretch",
-      backgroundColor: "#FFF",
+      backgroundColor: "#000",
+      paddingTop: 20,
       fontFamily: "Avenir Next Condensed"
     },
     columns: {
@@ -79,5 +87,6 @@ const styles = StyleSheet.create({
       flex: 1,
       alignSelf: "stretch",
       alignItems: "center",
+      marginTop: "30%",
     }
 });
